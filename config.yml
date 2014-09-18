@@ -1,0 +1,9 @@
+server:
+    port: 8080
+
+data:
+    className: "notes"
+
+catalyze:
+    appId: "7749a0c8-d1b0-42f7-aeb0-0608221f755a"
+    apiKey: "server node-example 89ab185a-d12f-4ae7-9967-8ec78c468f0e"

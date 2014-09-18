@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="NodeExample">
+    <head>
+        <title>Catalyze Node Example</title>
+        <link rel="stylesheet" type="text/css" href="basic.css"></script>
+    </head>
+    <body ng-controller="ExampleController">
+        <div class="error" ng-repeat="error in errors track by $index">{{error}}</div>
+        <span ng-show="registerSuccess">Registered successfully! Check your email for a validation link, follow it, then come back here and sign in.</span>
+        <form ng-hide="session" ng-submit="isRegisterMode ? signUp() : signIn()">
+            <h3 ng-hide="isRegisterMode">Sign In</h3>
+            <h3 ng-show="isRegisterMode">Sign Up</h3>
+            <input type="text" placeholder="username" ng-model="username" ng-disabled="formLoading" /><br/>
+            <input type="password" placeholder="password" ng-model="password" ng-disabled="formLoading" /><br/>
+            <div ng-show="isRegisterMode">
+                <input type="email" placeholder="email" ng-model="email" ng-show="isRegisterMode" ng-disabled="formLoading" /><br/>
+                <button type="submit" ng-disabled="formLoading">Create Account</button>
+                <a href="#" ng-click="isRegisterMode = false">Wait, I already have an account</a>
+            </div>
+            <div ng-hide="isRegisterMode">
+                <button type="submit" ng-disabled="formLoading">Sign In</button>
+                <a href="#" ng-click="isRegisterMode = true">Sign up for an account</a>
+            </div>
+        </form>
+        <section ng-show="session">
+            <section>
+                You are signed in as {{session.name.firstName}}.
+                <a href="#" ng-click="signOut()">Sign Out</a>
+            </section>
+
+            <form ng-submit="addNote()">
+                <input type="text" ng-model="newNote" placeholder="New note" />
+                <button type="submit">Add Note</button>
+            </form>
+
+            <h3>5 most recently-added notes:</h3>
+            <span ng-hide="notes">(no notes added yet)</span>
+            <ul>
+                <li ng-repeat="note in notes track by $index">{{note.content.text}}</li>
+            </ul>
+        </section>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+        <script src="module.js"></script>
+    </body>
+</html>
