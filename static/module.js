@@ -15,11 +15,11 @@ angular.module("NodeExample", [])
     };
 
     var error = function(errors) {
-        for (var i = 0; i < errors.length; i++) {
-            if (errors[i].code == 401) {
+        for (var i = 0; i < errors.errors.length; i++) {
+            if (errors.errors[i].code == 401) {
                 $scope.session = null;
             } else {
-                $scope.errors.push(errors[i].message);
+                $scope.errors.push(errors.errors[i].message);
             }
         }
         formDone();

@@ -7,7 +7,7 @@ var getSession = function(req, res, callback) {
     var token = req.cookies.token;
 
     if (!(usersId && token)) {
-        sendErrors([{code: 401, message: "Cookies not set" }], res);
+        sendErrors({errors: [{code: 401, message: "Cookies not set" }]}, res);
     } else {
         catalyze.sessionFromToken(usersId, token, function(errors, session) {
             if (errors) {
@@ -31,7 +31,7 @@ var unsetSession = function(res) {
 };
 
 var sendErrors = function(errors, res) {
-    res.status(errors[0].code).send(errors);
+    res.status(errors.errors[0].code).send(errors);
 };
 
 module.exports = function(app, config, className) {
@@ -112,7 +112,7 @@ module.exports = function(app, config, className) {
                 },
                 function(errors, results) {
                     if (errors) {
-                        sendErrors(res, errors);
+                        sendErrors(errors, res);
                     } else {
                         res.send(results);
                     }
