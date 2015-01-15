@@ -31,10 +31,6 @@ var unsetSession = function(res) {
 };
 
 var sendErrors = function(errors, res) {
-    // workaround for https://github.com/catalyzeio/catalyze-js-sdk/issues/2
-    if (errors.errors) {
-        errors = errors.errors;
-    }
     res.status(errors[0].code).send(errors);
 };
 
