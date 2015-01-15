@@ -8,7 +8,7 @@ A very, very bare-bones example of a node-based application using the [Catalyze 
 
 ## Running
 
-1. `node app/index.js`
+1. `node src/index.js`
 2. Open [http://localhost:8080/](http://localhost:8080/) in your browser of choice.
 
 ## Help and Documentation
